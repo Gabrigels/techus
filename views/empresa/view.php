@@ -37,6 +37,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'cidade',
             'estado',
             'pais',
+            [
+                'attribute' => 'id_lei',
+                'value' => $model->relLei,
+             ],
+
         ],
     ]) ?>
 

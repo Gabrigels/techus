@@ -59,6 +59,18 @@ class Empresa extends \yii\db\ActiveRecord
         ];
     }
 
+    public function getRelLei() {
+        return $this->hasMany(Lei::className(), 
+                              ['cidade' => 'cidade', 
+                               'estado' => 'estado',
+                               'pais'   => 'pais']);
+    }
+
+    public function getRelLeiNome() {
+        return $this->relLei->codigo;
+    }
+
+
     /**
      * Gets query for [[Auditorias]].
      *

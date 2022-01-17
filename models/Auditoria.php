@@ -35,6 +35,7 @@ class Auditoria extends \yii\db\ActiveRecord
         return [
             [['id_auditor', 'id_empresa', 'id_lei'], 'required'],
             [['id_auditor', 'id_empresa', 'id_lei'], 'integer'],
+            [['descricao'], 'string'],
             [['id_auditor'], 'exist', 'skipOnError' => true, 'targetClass' => Auditor::className(), 'targetAttribute' => ['id_auditor' => 'id']],
             [['id_empresa'], 'exist', 'skipOnError' => true, 'targetClass' => Empresa::className(), 'targetAttribute' => ['id_empresa' => 'id']],
             [['id_lei'], 'exist', 'skipOnError' => true, 'targetClass' => Lei::className(), 'targetAttribute' => ['id_lei' => 'id']],
@@ -51,7 +52,32 @@ class Auditoria extends \yii\db\ActiveRecord
             'id_auditor' => 'Id Auditor',
             'id_empresa' => 'Id Empresa',
             'id_lei' => 'Id Lei',
+            'descricao' => 'Descrição',
         ];
+    }
+
+    public function getRelAuditor() {
+        return $this->hasOne(Auditor::className(), ['id' => 'id_auditor']);
+    }
+
+    public function getRelAuditorNome() {
+        return $this->relAuditor->nome;
+    }
+
+    public function getRelEmpresa() {
+        return $this->hasOne(Empresa::className(), ['id' => 'id_empresa']);
+    }
+
+    public function getRelEmpresaNome() {
+        return $this->relEmpresa->nome;
+    }
+
+    public function getRelLei() {
+        return $this->hasOne(Lei::className(), ['id' => 'id_lei']);
+    }
+
+    public function getRelLeiNome() {
+        return $this->relLei->codigo;
     }
 
     /**

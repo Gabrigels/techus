@@ -12,7 +12,7 @@ class m220116_214422_criar_tabela_parecer extends Migration
         $this->createTable('parecer', [
             'id' => 'pk',
             'id_auditoria' => $this->integer()->notNull(),
-            'descricao' => $this->integer()->notNull(),
+            'descricao' => $this->string()->notNull(),
         ]);
 
         $this->createIndex('idx-parecer-id_auditoria', 'parecer', 'id_auditoria');

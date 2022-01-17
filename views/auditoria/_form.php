@@ -11,11 +11,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'id_auditor')->textInput() ?>
+    <?= $form->field($model, 'descricao')->textInput() ?>
 
-    <?= $form->field($model, 'id_empresa')->textInput() ?>
+    <?= $form->field($model, 'id_auditor')->dropDownList($auditor) ?>
 
-    <?= $form->field($model, 'id_lei')->textInput() ?>
+    <?= $form->field($model, 'id_empresa')->dropDownList($empresa) ?>
+
+    <?= $form->field($model, 'id_lei')->dropDownList($lei) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

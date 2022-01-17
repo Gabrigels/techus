@@ -31,8 +31,8 @@ $this->params['breadcrumbs'][] = $this->title;
             'descricao:ntext',
             'cidade',
             'estado',
-            //'pais',
-            //'enquadramento',
+            'pais',
+            'enquadramento',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

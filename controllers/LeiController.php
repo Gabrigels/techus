@@ -93,6 +93,7 @@ class LeiController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $enquadramento = Lei::$ENQUADRAMENTO;
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -100,6 +101,7 @@ class LeiController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'enquadramento' => $enquadramento,
         ]);
     }
 

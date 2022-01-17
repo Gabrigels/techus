@@ -67,10 +67,11 @@ class ParecerController extends Controller
     public function actionCreate()
     {
         $model = new Parecer();
-        $rows = (new \yii\db\Query())
-        ->select(['id', 'email'])
-        ->from('auditoria')
-        ->all();
+        $auditorias = (new \yii\db\Query())->select(['id', 'descricao'])->from('auditoria')->all();
+        $arr_auditoria = array();
+        foreach ($auditorias as $auditoria) {
+            $arr_auditoria[$auditoria['id']] = $auditoria['descricao'];
+        }
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
                 return $this->redirect(['view', 'id' => $model->id]);
@@ -81,6 +82,7 @@ class ParecerController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'auditoria' => $arr_auditoria,
         ]);
     }
 
@@ -94,6 +96,11 @@ class ParecerController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $auditorias = (new \yii\db\Query())->select(['id', 'descricao'])->from('auditoria')->all();
+        $arr_auditoria = array();
+        foreach ($auditorias as $auditoria) {
+            $arr_auditoria[$auditoria['id']] = $auditoria['descricao'];
+        }
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -101,6 +108,7 @@ class ParecerController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'auditoria' => $arr_auditoria,
         ]);
     }
 

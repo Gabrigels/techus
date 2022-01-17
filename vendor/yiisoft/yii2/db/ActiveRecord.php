@@ -97,6 +97,12 @@ class ActiveRecord extends BaseActiveRecord
      */
     const OP_ALL = 0x07;
 
+    const BELONGS_TO='CBelongsToRelation';
+    const HAS_ONE='CHasOneRelation';
+    const HAS_MANY='CHasManyRelation';
+    const MANY_MANY='CManyManyRelation';
+
+
 
     /**
      * Loads default values from database table schema.

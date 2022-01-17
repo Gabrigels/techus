@@ -30,10 +30,20 @@ class Parecer extends \yii\db\ActiveRecord
     {
         return [
             [['id_auditoria', 'descricao'], 'required'],
-            [['id_auditoria', 'descricao'], 'integer'],
+            [['id_auditoria'], 'integer'],
+            [['descricao'], 'string'],
             [['id_auditoria'], 'exist', 'skipOnError' => true, 'targetClass' => Auditoria::className(), 'targetAttribute' => ['id_auditoria' => 'id']],
         ];
     }
+
+    public function getRelAuditoria() {
+        return $this->hasOne(Auditoria::className(), ['id' => 'id_auditoria']);
+    }
+
+    public function getRelAuditoriaDescricao() {
+        return $this->relAuditoria->descricao;
+    }
+
 
     /**
      * {@inheritdoc}

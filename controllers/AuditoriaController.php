@@ -67,6 +67,22 @@ class AuditoriaController extends Controller
     public function actionCreate()
     {
         $model = new Auditoria();
+        $auditores = (new \yii\db\Query())->select(['id', 'nome'])->from('auditor')->all();
+        $empresas = (new \yii\db\Query())->select(['id', 'nome'])->from('empresa')->all();
+        $leis = (new \yii\db\Query())->select(['id', 'codigo'])->from('lei')->all();
+
+        $arr_auditor = array();
+        $arr_empresa = array();
+        $arr_lei = array();
+        foreach ($auditores as $auditor) {
+            $arr_auditor[$auditor['id']] = $auditor['nome'];
+        }
+        foreach ($empresas as $empresa) {
+            $arr_empresa[$empresa['id']] = $empresa['nome'];
+        }
+        foreach ($leis as $lei) {
+            $arr_lei[$lei['id']] = $lei['codigo'];
+        }
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
@@ -78,6 +94,9 @@ class AuditoriaController extends Controller
 
         return $this->render('create', [
             'model' => $model,
+            'auditor' => $arr_auditor,
+            'empresa' => $arr_empresa,
+            'lei' => $arr_lei,
         ]);
     }
 
@@ -91,6 +110,23 @@ class AuditoriaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $auditores = (new \yii\db\Query())->select(['id', 'nome'])->from('auditor')->all();
+        $empresas = (new \yii\db\Query())->select(['id', 'nome'])->from('empresa')->all();
+        $leis = (new \yii\db\Query())->select(['id', 'codigo'])->from('lei')->all();
+
+        $arr_auditor = array();
+        $arr_empresa = array();
+        $arr_lei = array();
+        foreach ($auditores as $auditor) {
+            $arr_auditor[$auditor['id']] = $auditor['nome'];
+        }
+        foreach ($empresas as $empresa) {
+            $arr_empresa[$empresa['id']] = $empresa['nome'];
+        }
+        foreach ($leis as $lei) {
+            $arr_lei[$lei['id']] = $lei['codigo'];
+        }
+
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -98,6 +134,9 @@ class AuditoriaController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'auditor' => $arr_auditor,
+            'empresa' => $arr_empresa,
+            'lei' => $arr_lei,
         ]);
     }
 

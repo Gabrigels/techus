@@ -11,6 +11,7 @@ class m220116_213358_criar_tabela_auditoria extends Migration
     {
         $this->createTable('auditoria', [
             'id' => 'pk',
+            'descricao' => $this->string()->notNull(),
             'id_auditor' => $this->integer()->notNull(),
             'id_empresa' => $this->integer()->notNull(),
             'id_lei' => $this->integer()->notNull(),
